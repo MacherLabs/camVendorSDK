@@ -5,8 +5,11 @@ logger.setLevel(logging.DEBUG)
 logger.info("Loaded " + __name__)
 from datetime import datetime, timezone
 import time
+import sys,os
+sys.path.append(os.path.join(os.path.dirname(__file__)))
 import hik
 import dahua
+
 
 def callBack(channel,alertType,state,time=None):
     if time is None:
