@@ -6,7 +6,7 @@ setup(
     description='vendor camera sdk import functions',
     url='http://demo.vedalabs.in/',
     license='MIT',
-    packages=['camVendorSDK'],
+    packages=['camVendorSDK','camVendorSDK.dahuaDevice','camVendorSDK.hikvisionDevice','camVendorSDK.hikvisionDevice.pyhik'],
     install_requires=['pyhik'],
     zip_safe=False
     )
