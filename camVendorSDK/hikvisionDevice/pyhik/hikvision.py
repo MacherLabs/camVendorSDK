@@ -504,8 +504,10 @@ class HikCamera(object):
             
             if self.device_info is None:
                 fail_count +=1 
-                _LOGGING.warning("Device info not found--trying to reinitaialize in {} seconds".format(fail_count*30))
-                time.sleep(30*fail_count)
+                _LOGGING.warning("Device info not found--trying to reinitaialize in {} seconds".format(30))
+                self.callBack(-1,"status",False)
+                
+                time.sleep(30)
                 self.initialize()
                 continue
 
@@ -519,6 +521,8 @@ class HikCamera(object):
                     stream = self.hik_request.get(url, stream=True)
 
                 if stream.status_code != requests.codes.ok:
+                    self.callBack(-1,"status",True)
+                    
                     raise ValueError('Connection unsucessful.')
                 else:
                     _LOGGING.debug('%s Connection Successful.', self.name)

@@ -37,12 +37,12 @@ class Camera():
     
 
 if __name__ == '__main__':
-    #cam = Camera('182.74.195.106',port=81,user='admin',passw='admin@123',vendor='hikvision')
-    cam = Camera('122.169.114.214',port=1025,user='admin',passw='vct280620',vendor='dahua')
+    cam = Camera('192.168.1.250',port=80,user='admin',passw='VedaLabs',vendor='hikvision')
+    #cam = Camera('122.169.114.214',port=1025,user='admin',passw='vct280620',vendor='dahua')
     cam.startEventListener()
-    time.sleep(15)
-    cam.stopEventListener()
-    snap = cam.getSnapshot(1,format='numpy')
-    print(snap.shape)
-    snap2 = cam.getSnapshot(2,format='numpy')
-    print("done")
+    # time.sleep(15)
+    # cam.stopEventListener()
+    # snap = cam.getSnapshot(1,format='numpy')
+    # print(snap.shape)
+    # snap2 = cam.getSnapshot(2,format='numpy')
+    # print("done")
