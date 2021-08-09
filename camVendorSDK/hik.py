@@ -26,6 +26,8 @@ class HikCamObject(object):
         self._name = self.cam.get_name
         self.motion = self.cam.current_motion_detection_state
         self.callBack=callBack
+        self.protocol=protocol
+        self.port=port
         self.snapTemplate="{}://{}:{}/ISAPI/Streaming/channels".format(protocol,IP,port)
         self.user=user
         self.passw=passw
@@ -74,8 +76,11 @@ class HikCamObject(object):
         else:
             logger.error("no sensor found to listen")
             
-    def getSnapshot(self,channel,authType,format):
+    def getSnapshot(self,channel,authType,format,url):
         imgUrl="{}/{}01/picture".format(self.snapTemplate,channel)
+        if url is not None:
+            snapTemplate="{}/ISAPI/Streaming/channels".format(url)
+            imgUrl="{}/101/picture".format(snapTemplate)
         return utils.getImageByUrl(imgUrl,self.user,self.passw,authType,format=format)
             
     

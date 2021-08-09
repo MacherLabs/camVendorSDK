@@ -32,17 +32,18 @@ class Camera():
     def stopEventListener(self):
         self.cam.stopListening()
     
-    def getSnapshot(self,channel,format='jpeg'):
-        return self.cam.getSnapshot(channel,self.authType,format=format)
+    def getSnapshot(self,channel,format='jpeg',url=None):
+        return self.cam.getSnapshot(channel,self.authType,format=format,url=url)
     
 
 if __name__ == '__main__':
     cam = Camera('192.168.1.250',port=80,user='admin',passw='VedaLabs',vendor='hikvision')
     #cam = Camera('122.169.114.214',port=1025,user='admin',passw='vct280620',vendor='dahua')
-    cam.startEventListener()
+    #cam.startEventListener()
     # time.sleep(15)
     # cam.stopEventListener()
-    # snap = cam.getSnapshot(1,format='numpy')
-    # print(snap.shape)
+    import pdb;pdb.set_trace()
+    snap = cam.getSnapshot(1,format='numpy',ip='192.168.1.85')
+    print(snap.shape)
     # snap2 = cam.getSnapshot(2,format='numpy')
     # print("done")

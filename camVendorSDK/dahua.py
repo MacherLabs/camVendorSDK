@@ -40,8 +40,12 @@ class DahuaCamObject(object):
     def stopListening(self):
         self.dahua_event.stopped.set()
         
-    def getSnapshot(self,channel,authType,format):
+    def getSnapshot(self,channel,authType,format,url):
         imgUrl="{}?channel={}".format(self.snapTemplate,channel)
+        if url is not None:
+            snapTemplate="{}/cgi-bin/snapshot.cgi".format(url)
+            imgUrl="{}?channel=1".format(snapTemplate,channel)
+            
         return utils.getImageByUrl(imgUrl,self.user,self.passw,authType,format=format)
             
             
