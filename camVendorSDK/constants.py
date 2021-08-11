@@ -2,7 +2,7 @@
 ALERT_TYPE_MAP={
     
     'motion':'motion',
-    'VideoMotion': 'motion'
+    'VideoMotion': 'motion',
     "Video Loss": "Video Loss",
     "Tamper Detection": "Tamper Detection",
     'Line Crossing': 'Line Crossing',
@@ -30,4 +30,9 @@ ALERT_TYPE_MAP={
     'StorageLowSpace': 'Disk Full',
     'AlarmLocal': 'Alarm Local',
     'AlarmOutput': 'AlarmOutput'
+}
+
+IP_CAM_SNAP_TEMPLATES={
+    'hikvision':"{}://{}:{}/ISAPI/Streaming/channels/channels/{}01/picture",
+    'dahua':"{}://{}:{}/cgi-bin/snapshot.cgi?channel={}"
 }

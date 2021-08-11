@@ -10,6 +10,7 @@ import hikvisionDevice.pyhik.hikvision as hikvision
 import time
 import threading
 import utils
+from constants import IP_CAM_SNAP_TEMPLATES
 
  
 
@@ -28,9 +29,10 @@ class HikCamObject(object):
         self.callBack=callBack
         self.protocol=protocol
         self.port=port
-        self.snapTemplate="{}://{}:{}/ISAPI/Streaming/channels".format(protocol,IP,port)
+        self.snapTemplate=IP_CAM_SNAP_TEMPLATES['hikvision']
         self.user=user
         self.passw=passw
+        self.ip=IP
         # Start event stream
 
 
@@ -76,11 +78,8 @@ class HikCamObject(object):
         else:
             logger.error("no sensor found to listen")
             
-    def getSnapshot(self,channel,authType,format,url):
-        imgUrl="{}/{}01/picture".format(self.snapTemplate,channel)
-        if url is not None:
-            snapTemplate="{}/ISAPI/Streaming/channels".format(url)
-            imgUrl="{}/101/picture".format(snapTemplate)
+    def getSnapshot(self,channel,authType,format):
+        imgUrl=self.snapTemplate.format(self.protocol,self.ip,self.port,channel)
         return utils.getImageByUrl(imgUrl,self.user,self.passw,authType,format=format)
             
     

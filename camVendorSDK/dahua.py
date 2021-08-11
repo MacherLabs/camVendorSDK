@@ -32,7 +32,10 @@ class DahuaCamObject(object):
         self.dahua_event = DahuaEventThread([camera],callBack)
         self.user=user
         self.passw=passw
-        self.snapTemplate="{}://{}:{}/cgi-bin/snapshot.cgi".format(protocol,IP,port)
+        self.ip=IP
+        self.port=port
+        self.protocol=protocol
+        self.snapTemplate="{}://{}:{}/cgi-bin/snapshot.cgi?channel={}"
             
     def startListening(self):
         self.dahua_event.start()
@@ -40,12 +43,8 @@ class DahuaCamObject(object):
     def stopListening(self):
         self.dahua_event.stopped.set()
         
-    def getSnapshot(self,channel,authType,format,url):
-        imgUrl="{}?channel={}".format(self.snapTemplate,channel)
-        if url is not None:
-            snapTemplate="{}/cgi-bin/snapshot.cgi".format(url)
-            imgUrl="{}?channel=1".format(snapTemplate,channel)
-            
+    def getSnapshot(self,channel,authType,format):
+        imgUrl=self.snapTemplate.format(self.protocol,self.ip,self.port,channel) 
         return utils.getImageByUrl(imgUrl,self.user,self.passw,authType,format=format)
             
             
