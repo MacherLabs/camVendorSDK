@@ -60,5 +60,7 @@ if __name__ == '__main__':
     import pdb;pdb.set_trace()
     snap = getIpCamSnap('122.169.114.214',port=1025,user='admin',passw='vct280620',vendor='dahua',format='numpy')
     print(snap.shape)
+    snap2 = getIpCamSnap('192.168.1.85',port=80,user='admin',passw='VedaLabs',vendor='hikvision',format='numpy')
+    print(snap2.shape)
     # snap2 = cam.getSnapshot(2,format='numpy')
     # print("done")

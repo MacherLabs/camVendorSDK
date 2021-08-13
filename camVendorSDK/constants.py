@@ -33,6 +33,6 @@ ALERT_TYPE_MAP={
 }
 
 IP_CAM_SNAP_TEMPLATES={
-    'hikvision':"{}://{}:{}/ISAPI/Streaming/channels/channels/{}01/picture",
+    'hikvision':"{}://{}:{}/ISAPI/Streaming/channels/{}01/picture",
     'dahua':"{}://{}:{}/cgi-bin/snapshot.cgi?channel={}"
 }
