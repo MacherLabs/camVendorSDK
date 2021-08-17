@@ -4,13 +4,14 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.info("Loaded " + __name__)
 from datetime import datetime, timezone
-from dahuaDevice.dahuaEvent import DahuaEventThread
+from dahuaDevice.dahuaEventReq import DahuaEventThread
 
 #logging.basicConfig(filename='out.log', filemode='w', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 import time
 import threading
 import requests
 import utils
+from constants import IP_CAM_SNAP_TEMPLATES
 
 class DahuaCamObject(object):
     """Representation of HIk camera."""
@@ -29,13 +30,13 @@ class DahuaCamObject(object):
         camera["pass"] = passw
         camera["channels"] = {}
         print('NAME: {}'.format(camera["name"]))
-        self.dahua_event = DahuaEventThread([camera],callBack)
+        self.dahua_event = DahuaEventThread(camera,callBack)
         self.user=user
         self.passw=passw
         self.ip=IP
         self.port=port
         self.protocol=protocol
-        self.snapTemplate="{}://{}:{}/cgi-bin/snapshot.cgi?channel={}"
+        self.snapTemplate=IP_CAM_SNAP_TEMPLATES['dahua']
             
     def startListening(self):
         self.dahua_event.start()

@@ -521,11 +521,12 @@ class HikCamera(object):
                     stream = self.hik_request.get(url, stream=True)
 
                 if stream.status_code != requests.codes.ok:
-                    self.callBack(-1,"status",True)
+                    self.callBack(-1,"status",False)
                     
                     raise ValueError('Connection unsucessful.')
                 else:
                     _LOGGING.debug('%s Connection Successful.', self.name)
+                    self.callBack(-1,"status",True)
                     fail_count = 0
                     self.watchdog.start()
 
