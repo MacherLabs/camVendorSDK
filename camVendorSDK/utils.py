@@ -28,7 +28,7 @@ def getImageByUrl(url,user,passwd,authType='digest',format='jpeg'):
         auth=HTTPDigestAuth(user,passwd)
     
     try:
-        response = requests.get(url,auth=auth)
+        response = requests.get(url,auth=auth,timeout=5)
         response.raise_for_status()
         data = response.content
         if format=='numpy':
