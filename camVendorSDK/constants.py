@@ -36,3 +36,13 @@ IP_CAM_SNAP_TEMPLATES={
     'hikvision':"{}://{}:{}/ISAPI/Streaming/channels/{}01/picture",
     'dahua':"{}://{}:{}/cgi-bin/snapshot.cgi?channel={}"
 }
+
+IP_CAM_CHANNELS_TEMPLATE={
+    'hikvision': "{}://{}:{}/ISAPI/System/Video/inputs/channels",
+    'dahua':"{}://{}:{}/cgi-bin/configManager.cgi?action=getConfig&name=ChannelTitle"
+}
+
+IP_CAM_DEVICE_INFO_TEMPLATES={
+    'hikvision': "{}://{}:{}/ISAPI/System/deviceInfo",
+    'dahua':"{}://{}:{}/cgi-bin/configManager.cgi?action=getConfig&name=General"
+}
